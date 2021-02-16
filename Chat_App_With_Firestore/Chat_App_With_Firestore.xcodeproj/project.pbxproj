@@ -13,6 +13,7 @@
 		0F1FAD8025DC1FF200203DEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1FAD7E25DC1FF200203DEC /* Main.storyboard */; };
 		0F1FAD8225DC1FF300203DEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F1FAD8125DC1FF300203DEC /* Assets.xcassets */; };
 		0F1FAD8525DC1FF300203DEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F1FAD8325DC1FF300203DEC /* LaunchScreen.storyboard */; };
+		0F1FAD9525DC20EF00203DEC /* ConversationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FAD9425DC20EF00203DEC /* ConversationsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0F1FAD8125DC1FF300203DEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0F1FAD8425DC1FF300203DEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0F1FAD8625DC1FF300203DEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0F1FAD9425DC20EF00203DEC /* ConversationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,12 @@
 		0F1FAD7725DC1FF200203DEC /* Chat_App_With_Firestore */ = {
 			isa = PBXGroup;
 			children = (
+				0F1FAD9325DC20AF00203DEC /* Model */,
+				0F1FAD9225DC20AD00203DEC /* View */,
+				0F1FAD9125DC20AB00203DEC /* ViewModel */,
+				0F1FAD9025DC20A900203DEC /* Controller */,
+				0F1FAD8E25DC209E00203DEC /* API */,
+				0F1FAD8D25DC209A00203DEC /* Utils */,
 				0F1FAD7825DC1FF200203DEC /* AppDelegate.swift */,
 				0F1FAD7A25DC1FF200203DEC /* SceneDelegate.swift */,
 				0F1FAD7C25DC1FF200203DEC /* ViewController.swift */,
@@ -65,6 +73,49 @@
 				0F1FAD8625DC1FF300203DEC /* Info.plist */,
 			);
 			path = Chat_App_With_Firestore;
+			sourceTree = "<group>";
+		};
+		0F1FAD8D25DC209A00203DEC /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		0F1FAD8E25DC209E00203DEC /* API */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		0F1FAD9025DC20A900203DEC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F1FAD9425DC20EF00203DEC /* ConversationsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F1FAD9125DC20AB00203DEC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0F1FAD9225DC20AD00203DEC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0F1FAD9325DC20AF00203DEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +190,7 @@
 			files = (
 				0F1FAD7D25DC1FF200203DEC /* ViewController.swift in Sources */,
 				0F1FAD7925DC1FF200203DEC /* AppDelegate.swift in Sources */,
+				0F1FAD9525DC20EF00203DEC /* ConversationsController.swift in Sources */,
 				0F1FAD7B25DC1FF200203DEC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
