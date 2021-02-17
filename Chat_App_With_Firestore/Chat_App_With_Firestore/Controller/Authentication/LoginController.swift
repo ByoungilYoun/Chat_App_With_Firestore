@@ -17,18 +17,46 @@ class LoginController : UIViewController {
     return iv
   }()
   
-  private let emailContainerView : UIView = {
-    let view = UIView()
-    view.backgroundColor = .cyan
-    view.setHeight(height: 50)
-    return view
+  private lazy var  emailContainerView : UIView = {
+    let containverView = UIView()
+    containverView.backgroundColor = .clear
+    
+    let iv = UIImageView()
+    iv.image = UIImage(systemName: "envelope")
+    iv.tintColor = .white
+    
+    containverView.addSubview(iv)
+    iv.centerY(inView: containverView)
+    iv.anchor(left : containverView.leftAnchor, paddingLeft: 8)
+    iv.setDimensions(height: 24, width: 28)
+    
+    containverView.addSubview(emailTextField)
+    emailTextField.centerY(inView: containverView)
+    emailTextField.anchor(left : iv.rightAnchor, right: containverView.rightAnchor, bottom: containverView.bottomAnchor, paddingLeft: 8, paddingBottom: -8)
+    
+    containverView.setHeight(height: 50)
+    return containverView
   }()
   
-  private let passwordContainerView : UIView = {
-    let view = UIView()
-    view.backgroundColor = .yellow
-    view.setHeight(height: 50)
-    return view
+  private lazy var passwordContainerView : UIView = {
+    let containerView = UIView()
+    containerView.backgroundColor = .clear
+    
+    let iv = UIImageView()
+    iv.image = UIImage(systemName: "lock")
+    iv.tintColor = .white
+    
+    containerView.addSubview(iv)
+    iv.centerY(inView: containerView)
+    iv.anchor(left : containerView.leftAnchor, paddingLeft: 8)
+    iv.setDimensions(height: 28, width: 28)
+    
+    containerView.addSubview(passwordTextField)
+    passwordTextField.centerY(inView: containerView)
+    passwordTextField.anchor(left : iv.rightAnchor, right: containerView.rightAnchor, bottom: containerView.bottomAnchor, paddingLeft: 8, paddingBottom: -8)
+    
+    containerView.setHeight(height: 50)
+    return containerView
   }()
   
   private let loginButton : UIButton = {
@@ -39,6 +67,20 @@ class LoginController : UIViewController {
     button.backgroundColor = .systemRed
     button.setHeight(height: 50)
     return button
+  }()
+  
+  private let emailTextField : UITextField = {
+    let tf = UITextField()
+    tf.placeholder = "email"
+    tf.textColor = .white
+    return tf
+  }()
+  
+  private let passwordTextField : UITextField = {
+    let tf = UITextField()
+    tf.placeholder = "password"
+    tf.isSecureTextEntry = true
+    return tf
   }()
   //MARK: - LifeCycle
   override func viewDidLoad() {
