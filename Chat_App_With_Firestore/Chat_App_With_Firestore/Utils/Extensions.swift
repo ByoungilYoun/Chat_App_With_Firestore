@@ -7,6 +7,7 @@
 
 import UIKit
 
+  //MARK: - extension UIView
 extension UIView {
   func anchor(top : NSLayoutYAxisAnchor? = nil,
               left : NSLayoutXAxisAnchor? = nil,
@@ -85,5 +86,16 @@ extension UIView {
       let superViewBottomAnchor = superview?.bottomAnchor else { return }
     
     anchor(top: superViewTopAnchor, left: superViewLeftAnchor, right: superViewRightAnchor, bottom: superViewBottomAnchor)
+  }
+}
+
+  //MARK: - extension UIViewController
+extension UIViewController {
+  func configureGradientLayer() {
+    let gradient = CAGradientLayer()
+    gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor]
+    gradient.locations = [0, 1]
+    view.layer.addSublayer(gradient)
+    gradient.frame = view.frame
   }
 }
