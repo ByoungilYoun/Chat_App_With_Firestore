@@ -10,6 +10,8 @@ import UIKit
 class LoginController : UIViewController {
   
   //MARK: - Properties
+  private var viewModel = LoginViewModel()
+  
   private let iconImage : UIImageView = {
     let iv = UIImageView()
     iv.image = UIImage(systemName: "bubble.right")
@@ -35,6 +37,8 @@ class LoginController : UIViewController {
     button.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
     button.setTitleColor(.white, for: .normal)
     button.setHeight(height: 50)
+    button.isEnabled = false
+    button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
     return button
   }()
   
@@ -64,12 +68,37 @@ class LoginController : UIViewController {
   }
   
   //MARK: - Selectors
+  
+  @objc func handleLogin() {
+    print("Handle login here")
+  }
+  
   @objc func handleShowSignUp() {
    let controller = RegistrationController()
     navigationController?.pushViewController(controller, animated: true)
   }
   
+  @objc func textDidChange(sender : UITextField) {
+    if sender == emailTextField {
+      viewModel.email = sender.text
+    } else {
+      viewModel.password = sender.text
+    }
+    checkFormStatus() // viewModel 의 formIsValid 가 true 인지 아닌지 판별하는 함수를 여기다가 써준다.
+  }
+  
   //MARK: - Helpers
+  
+  func checkFormStatus() {
+    if viewModel.formIsValid {
+      loginButton.isEnabled = true
+      loginButton.backgroundColor = #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)
+    } else {
+      loginButton.isEnabled = false
+      loginButton.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
+    }
+  }
+  
   func configureUI() {
     navigationController?.navigationBar.isHidden = true
     navigationController?.navigationBar.barStyle = .black
@@ -95,5 +124,8 @@ class LoginController : UIViewController {
     dontHaveAccountButton.anchor(left : view.leftAnchor,
                                  right : view.rightAnchor,
                                  bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 32, paddingRight: -32)
+    
+    emailTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
   }
 }
