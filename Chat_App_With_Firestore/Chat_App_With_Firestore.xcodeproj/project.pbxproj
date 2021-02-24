@@ -19,6 +19,7 @@
 		0F1FADA225DC36A900203DEC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FADA125DC36A900203DEC /* Extensions.swift */; };
 		0F56280425E2AD880004883C /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56280325E2AD880004883C /* InputContainerView.swift */; };
 		0F56280825E2C9980004883C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56280725E2C9980004883C /* CustomTextField.swift */; };
+		0F922DBA25E6A98200368CB8 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */; };
 		0FA40D5825E566EE00DA92BE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA40D5725E566EE00DA92BE /* LoginViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		0F1FADA125DC36A900203DEC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0F56280325E2AD880004883C /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		0F56280725E2C9980004883C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		0FA40D5725E566EE00DA92BE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +116,7 @@
 		0F1FAD9125DC20AB00203DEC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				0FA40D5725E566EE00DA92BE /* LoginViewModel.swift */,
+				0F922DBC25E6A98900368CB8 /* Authentication */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -140,6 +142,15 @@
 			children = (
 				0F1FAD9A25DC302200203DEC /* LoginController.swift */,
 				0F1FAD9E25DC302E00203DEC /* RegistrationController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		0F922DBC25E6A98900368CB8 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				0FA40D5725E566EE00DA92BE /* LoginViewModel.swift */,
+				0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -215,6 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F1FAD7D25DC1FF200203DEC /* ViewController.swift in Sources */,
+				0F922DBA25E6A98200368CB8 /* RegistrationViewModel.swift in Sources */,
 				0F56280425E2AD880004883C /* InputContainerView.swift in Sources */,
 				0F1FAD7925DC1FF200203DEC /* AppDelegate.swift in Sources */,
 				0F1FAD9525DC20EF00203DEC /* ConversationsController.swift in Sources */,
