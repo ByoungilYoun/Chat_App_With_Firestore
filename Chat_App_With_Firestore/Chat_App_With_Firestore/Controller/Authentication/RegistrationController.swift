@@ -6,11 +6,14 @@
 //
 
 import UIKit
+import Firebase
 
 class RegistrationController : UIViewController {
   
   //MARK: - Properties
   private var viewModel = RegistrationViewModel()
+  
+  private var profileImage : UIImage?
   
   private let plusPhotoButton : UIButton = {
     let button = UIButton(type: .system)
@@ -18,23 +21,23 @@ class RegistrationController : UIViewController {
     button.tintColor = .white
     button.addTarget(self, action: #selector(handleSelectPhoto), for: .touchUpInside)
     button.clipsToBounds = true
-    button.imageView?.clipsToBounds = true
+    button.imageView?.contentMode = .scaleAspectFill
     return button
   }()
   
   private lazy var  emailContainerView : InputContainerView = {
     return  InputContainerView(image: UIImage(systemName: "envelope")!,
-                                            textField: emailTextField)
+                               textField: emailTextField)
   }()
   
   private lazy var fullNameContainerView : InputContainerView = {
     return  InputContainerView(image: UIImage(systemName: "person.fill")!,
-                                            textField: fullnameTextField)
+                               textField: fullnameTextField)
   }()
   
   private lazy var userNameContainerView : InputContainerView = {
     return  InputContainerView(image: UIImage(systemName: "person.fill")!,
-                                            textField: usernameTextField)
+                               textField: usernameTextField)
   }()
   
   private lazy var passwordContainerView : InputContainerView = {
@@ -61,6 +64,7 @@ class RegistrationController : UIViewController {
     button.setTitleColor(.white, for: .normal)
     button.setHeight(height: 50)
     button.isEnabled = false
+    button.addTarget(self, action: #selector(handleRegistration), for: .touchUpInside)
     return button
   }()
   
@@ -70,7 +74,7 @@ class RegistrationController : UIViewController {
                                                     attributes: [.font : UIFont.systemFont(ofSize: 16),
                                                                  .foregroundColor : UIColor.white])
     attributedTitle.append(NSAttributedString(string: "Log In", attributes: [.font : UIFont.boldSystemFont(ofSize: 16),
-                                                                              .foregroundColor : UIColor.white]))
+                                                                             .foregroundColor : UIColor.white]))
     button.setAttributedTitle(attributedTitle, for: .normal)
     button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
     return button
@@ -83,6 +87,56 @@ class RegistrationController : UIViewController {
   }
   
   //MARK: - Selectors
+  
+  @objc func handleRegistration() {
+    guard let email = emailTextField.text else {return}
+    guard let password = passwordTextField.text else {return}
+    guard let fullname = fullnameTextField.text else {return}
+    guard let username = usernameTextField.text?.lowercased() else {return}
+    guard let profileImage = profileImage else {return}
+    
+    guard let imageData = profileImage.jpegData(compressionQuality: 0.3) else {return}
+    
+    // storage 에 올라갈 이미지 저장 파일 이름 설정
+    let fileName = NSUUID().uuidString
+    let ref = Storage.storage().reference(withPath: "/profile_images/\(fileName)")
+    
+    // 서버에 업로드
+    ref.putData(imageData, metadata: nil) { (meta, error) in
+      if let error = error {
+        print("Debug : Failed to upload image with error \(error.localizedDescription)")
+        return
+      }
+      
+      ref.downloadURL { (url, error) in
+        guard let profileImageUrl = url?.absoluteString else {return}
+        
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+          if let error = error {
+            print("Debug : Failed to create user with error \(error.localizedDescription)")
+            return
+          }
+          
+          guard let uid = result?.user.uid else {return}
+          
+          let data = ["email" : email,
+                      "fullname" : fullname,
+                      "profileImageUrl" : profileImageUrl,
+                      "uid" : uid,
+                      "username" : username] as [String : Any]
+          
+          Firestore.firestore().collection("users").document(uid).setData(data) { (error) in
+            if let error = error {
+              print("Debug : Failed to upload user data with error \(error.localizedDescription)")
+              return
+            }
+            
+            print("Debug : Did create user...")
+          }
+        }
+      }
+    }
+  }
   
   @objc func textDidChange(sender : UITextField) {
     if sender == emailTextField {
@@ -129,7 +183,7 @@ class RegistrationController : UIViewController {
     
     view.addSubview(alreadyHaveAccount)
     alreadyHaveAccount.anchor(left : view.leftAnchor, right : view.rightAnchor,
-                            bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 32, paddingRight: -32)
+                              bottom: view.safeAreaLayoutGuide.bottomAnchor, paddingLeft: 32, paddingRight: -32)
   }
   
   // configureNotificationObservers()
@@ -141,10 +195,11 @@ class RegistrationController : UIViewController {
   }
 }
 
-  //MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
+//MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension RegistrationController : UIImagePickerControllerDelegate, UINavigationControllerDelegate {
   func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     let image = info[.originalImage] as? UIImage
+    profileImage = image
     plusPhotoButton.setImage(image?.withRenderingMode(.alwaysOriginal), for: .normal)
     plusPhotoButton.layer.borderColor = UIColor.white.cgColor
     plusPhotoButton.layer.borderWidth = 3.0
@@ -153,7 +208,7 @@ extension RegistrationController : UIImagePickerControllerDelegate, UINavigation
   }
 }
 
-  //MARK: - AuthenticationControllerProtocol
+//MARK: - AuthenticationControllerProtocol
 extension RegistrationController : AuthenticationControllerProtocol {
   func checkFormStatus() {
     if viewModel.formIsValid {
