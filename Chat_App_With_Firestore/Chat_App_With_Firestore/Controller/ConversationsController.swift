@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let reuseIdentifier = "ConversationCell"
 
@@ -19,14 +20,46 @@ class ConversationsController : UIViewController {
     configureUI()
     configureNavigationBar()
     configureTableView()
+    authenticateUser()
   }
   
   //MARK: - Selectors
   @objc func showProfile() {
-    print("123")
+    logout()
+  }
+  
+  //MARK: - API
+  // 로그인 되어있으면 ConversationController로 이동, 로그인이 안되어있으면 LoginController 로 이동.
+  func authenticateUser() {
+    if Auth.auth().currentUser?.uid == nil {
+      print("Debug : User is not logged in. Present login screen here..")
+      presentLoginScreen()
+    } else {
+      print("Debug : User id is \(Auth.auth().currentUser?.uid).")
+    }
+  }
+  
+  // 로그아웃
+  func logout() {
+    do {
+      try Auth.auth().signOut()
+    } catch {
+      print("Debug : Error signing out...")
+    }
   }
   
   //MARK: - Helpers
+  // 로그인뷰컨 띄우는 함수
+  func presentLoginScreen() {
+    DispatchQueue.main.async {
+      let controller = LoginController()
+      let nav = UINavigationController(rootViewController: controller)
+      nav.modalPresentationStyle = .fullScreen
+      self.present(nav, animated: true, completion: nil)
+    }
+  }
+  
+  
   func configureUI() {
     view.backgroundColor = .systemBackground
     
