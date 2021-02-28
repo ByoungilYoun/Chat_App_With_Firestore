@@ -14,12 +14,21 @@ class ConversationsController : UIViewController {
   //MARK: - Properties
   private let tableView = UITableView()
   
+  // 플러스 버튼
+  private let newMessageButton : UIButton = {
+    let button = UIButton(type: .system)
+    button.setImage(UIImage(systemName: "plus"), for: .normal)
+    button.backgroundColor = .systemPurple
+    button.tintColor = .white
+    button.imageView?.setDimensions(height: 24, width: 24)
+    button.addTarget(self, action: #selector(showNewMessage), for: .touchUpInside)
+    return button
+  }()
+  
   //MARK: - LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
-    configureNavigationBar()
-    configureTableView()
     authenticateUser()
   }
   
@@ -28,6 +37,14 @@ class ConversationsController : UIViewController {
     logout()
   }
   
+  // 플러스 버튼에 addTarget
+  @objc func showNewMessage() {
+    let controller = NewMessageController()
+    let nav = UINavigationController(rootViewController: controller)
+    nav.modalPresentationStyle = .fullScreen
+    present(nav, animated: true, completion: nil)
+    
+  }
   //MARK: - API
   // 로그인 되어있으면 ConversationController로 이동, 로그인이 안되어있으면 LoginController 로 이동.
   func authenticateUser() {
@@ -64,8 +81,18 @@ class ConversationsController : UIViewController {
   func configureUI() {
     view.backgroundColor = .systemBackground
     
+    configureNavigationBar()
+    configureTableView()
+    
+    
     let image = UIImage(systemName: "person.circle.fill")
     navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(showProfile))
+    
+    view.addSubview(newMessageButton)
+    newMessageButton.setDimensions(height: 56, width: 56)
+    newMessageButton.layer.cornerRadius = 56 / 2
+    newMessageButton.anchor(right : view.rightAnchor ,bottom : view.safeAreaLayoutGuide.bottomAnchor, paddingRight: -30, paddingBottom: -16)
+    
   }
   
   func configureTableView() {

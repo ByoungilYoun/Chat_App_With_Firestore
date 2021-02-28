@@ -106,7 +106,7 @@ class RegistrationController : UIViewController {
         return
       }
       
-      self.showLoader(false)ㅣ;
+      self.showLoader(false)
       self.dismiss(animated: true, completion: nil)
     }
   }
