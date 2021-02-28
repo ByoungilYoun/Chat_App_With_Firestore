@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import JGProgressHUD
 
   //MARK: - extension UIView
 extension UIView {
@@ -91,11 +92,26 @@ extension UIView {
 
   //MARK: - extension UIViewController
 extension UIViewController {
+  
+  static let hud = JGProgressHUD(style: .dark) // hud 인스턴스를 한개 만들어서 showLoader 함수를 통해 사용한다.
+  
   func configureGradientLayer() {
     let gradient = CAGradientLayer()
     gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemPink.cgColor]
     gradient.locations = [0, 1]
     view.layer.addSublayer(gradient)
     gradient.frame = view.frame
+  }
+  
+  // 로딩을 보여주는 extension 함수
+  func showLoader(_ show : Bool, withText text : String? = "Loading") {
+    view.endEditing(true)
+    UIViewController.hud.textLabel.text = text
+    
+    if show {
+      UIViewController.hud.show(in: view)
+    } else {
+      UIViewController.hud.dismiss()
+    }
   }
 }

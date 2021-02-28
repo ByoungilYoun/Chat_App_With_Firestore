@@ -97,11 +97,16 @@ class RegistrationController : UIViewController {
     
     let credentials = RegistrationCredentials(email: email, password: password, fullname: fullname, username: username, profileImage: profileImage)
     
+    showLoader(true, withText: "Signing You Up")
+    
     AuthService.shared.createUser(credentials: credentials) { error in
       if let error = error {
         print("Debug : \(error.localizedDescription)")
+        self.showLoader(false)
         return
       }
+      
+      self.showLoader(false)ㅣ;
       self.dismiss(animated: true, completion: nil)
     }
   }
@@ -128,6 +133,18 @@ class RegistrationController : UIViewController {
   
   @objc func handleShowLogin() {
     navigationController?.popViewController(animated: true)
+  }
+  
+  @objc func keyboardWillShow() {
+    if view.frame.origin.y == 0 {
+      self.view.frame.origin.y -= 88
+    }
+  }
+  
+  @objc func keyboardWillHide() {
+    if view.frame.origin.y != 0 {
+      self.view.frame.origin.y = 0
+    }
   }
   //MARK: - Helpers
   func configureUI() {
@@ -160,6 +177,9 @@ class RegistrationController : UIViewController {
     passwordTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     fullnameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
     usernameTextField.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
   }
 }
 
