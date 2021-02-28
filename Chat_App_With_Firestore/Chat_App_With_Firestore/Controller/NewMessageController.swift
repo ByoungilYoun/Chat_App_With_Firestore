@@ -12,6 +12,7 @@ private let reuseIdentifier = "UserCell"
 class NewMessageController : UITableViewController {
   
   //MARK: - Properties
+  private var users = [User]()
   
   //MARK: - LifeCycle
   
@@ -28,7 +29,10 @@ class NewMessageController : UITableViewController {
   
   //MARK: - API
   func fetchUsers() {
-    Service.fetchUsers()
+    Service.fetchUsers { users in
+      self.users = users
+      self.tableView.reloadData() // reloadData 를 해야한다. 처음 users 변수는 아무것도 없다가 complete 될때까지(API 호출을 사용해서 데이터를 가져오는데) 시간이 좀 걸리니까 리로드를 해줘야한다.
+    }
   }
   //MARK: - Helpers
   
@@ -46,7 +50,7 @@ class NewMessageController : UITableViewController {
   //MARK: - UITableViewDataSource
 extension NewMessageController {
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 2
+    return users.count
   }
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
