@@ -114,4 +114,25 @@ extension UIViewController {
       UIViewController.hud.dismiss()
     }
   }
+  
+  
+  func configureNavigationBar(withTitle title : String, prefersLargeTitle : Bool) {
+    let appearance = UINavigationBarAppearance() // 네비게이션 바 백그라운드 appearance 생성
+    appearance.configureWithOpaqueBackground()
+    appearance.largeTitleTextAttributes = [.foregroundColor : UIColor.white] // 'Message' 타이틀 흰색으로 나타내기
+    appearance.backgroundColor = .systemPurple
+    
+    navigationController?.navigationBar.standardAppearance = appearance
+    navigationController?.navigationBar.compactAppearance = appearance
+    navigationController?.navigationBar.scrollEdgeAppearance = appearance
+    
+    navigationController?.navigationBar.prefersLargeTitles = prefersLargeTitle
+    navigationItem.title = title
+    
+    navigationController?.navigationBar.tintColor = .white
+    navigationController?.navigationBar.isTranslucent = true  // 반투명한
+    
+    navigationController?.navigationBar.overrideUserInterfaceStyle = .dark
+    
+  }
 }
