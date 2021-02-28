@@ -20,6 +20,8 @@
 		0F56280425E2AD880004883C /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56280325E2AD880004883C /* InputContainerView.swift */; };
 		0F56280825E2C9980004883C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56280725E2C9980004883C /* CustomTextField.swift */; };
 		0F922DBA25E6A98200368CB8 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */; };
+		0F9CB1AD25EC0C36006ED7EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9CB1AC25EC0C36006ED7EA /* User.swift */; };
+		0F9CB1B025EC0C6E006ED7EA /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F9CB1AF25EC0C6E006ED7EA /* Service.swift */; };
 		0FA40D5825E566EE00DA92BE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA40D5725E566EE00DA92BE /* LoginViewModel.swift */; };
 		0FC9EA0E25EB8CF40062EA14 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC9EA0D25EB8CF40062EA14 /* AuthService.swift */; };
 		0FC9EA1125EBE65C0062EA14 /* NewMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC9EA1025EBE65C0062EA14 /* NewMessageController.swift */; };
@@ -44,6 +46,8 @@
 		0F56280325E2AD880004883C /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		0F56280725E2C9980004883C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
+		0F9CB1AC25EC0C36006ED7EA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = Chat_App_With_Firestore/API/User.swift; sourceTree = SOURCE_ROOT; };
+		0F9CB1AF25EC0C6E006ED7EA /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		0FA40D5725E566EE00DA92BE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		0FC9EA0D25EB8CF40062EA14 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		0FC9EA1025EBE65C0062EA14 /* NewMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessageController.swift; sourceTree = "<group>"; };
@@ -117,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				0FC9EA0D25EB8CF40062EA14 /* AuthService.swift */,
+				0F9CB1AF25EC0C6E006ED7EA /* Service.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 		0F1FAD9325DC20AF00203DEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F9CB1AC25EC0C36006ED7EA /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,6 +320,8 @@
 				0F1FAD9525DC20EF00203DEC /* ConversationsController.swift in Sources */,
 				0FC9EA1425EBF0650062EA14 /* UserCell.swift in Sources */,
 				0F1FAD7B25DC1FF200203DEC /* SceneDelegate.swift in Sources */,
+				0F9CB1AD25EC0C36006ED7EA /* User.swift in Sources */,
+				0F9CB1B025EC0C6E006ED7EA /* Service.swift in Sources */,
 				0F1FAD9F25DC302E00203DEC /* RegistrationController.swift in Sources */,
 				0F1FAD9B25DC302200203DEC /* LoginController.swift in Sources */,
 				0F1FADA225DC36A900203DEC /* Extensions.swift in Sources */,
