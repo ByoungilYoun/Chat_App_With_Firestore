@@ -59,6 +59,7 @@ class ChatController : UICollectionViewController {
     Service.fetchMessages(forUser: user) { messages in
       self.messages = messages
       self.collectionView.reloadData()
+      self.collectionView.scrollToItem(at: [0,self.messages.count - 1], at: .bottom, animated: true) // 계속 새롭게 메세지를 가져올때마다 밑으로 내려간다.
     }
   }
   
@@ -69,7 +70,8 @@ class ChatController : UICollectionViewController {
     configureNavigationBar(withTitle: user.username, prefersLargeTitle: false)
     
     collectionView.register(MessageCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-    collectionView.alwaysBounceVertical = true 
+    collectionView.alwaysBounceVertical = true
+    collectionView.keyboardDismissMode = .interactive //(키보드가 있는채로 채팅창을 위로 올리면 키보드가 사라진다.)
   }
 }
 
@@ -94,7 +96,14 @@ extension ChatController : UICollectionViewDelegateFlowLayout {
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: view.frame.width, height: 50)
+    let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+    let estimatedSizeToCell = MessageCell(frame: frame)
+    estimatedSizeToCell.message = messages[indexPath.row]
+    estimatedSizeToCell.layoutIfNeeded()
+    
+    let targetSize = CGSize(width: view.frame.width, height: 1000)
+    let estimatedSize = estimatedSizeToCell.systemLayoutSizeFitting(targetSize)
+    return .init(width: view.frame.width, height: estimatedSize.height)
   }
 }
 

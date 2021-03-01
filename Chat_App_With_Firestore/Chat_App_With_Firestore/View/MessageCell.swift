@@ -53,7 +53,7 @@ class MessageCell : UICollectionViewCell {
     
     addSubview(bubbleContainer)
     bubbleContainer.layer.cornerRadius = 12
-    bubbleContainer.anchor(top : topAnchor)
+    bubbleContainer.anchor(top : topAnchor, bottom: bottomAnchor)
     bubbleContainer.widthAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
     
     // 위에서 bubbleContainer의 topAnchor 만 주고 left, right 은 여기에다
