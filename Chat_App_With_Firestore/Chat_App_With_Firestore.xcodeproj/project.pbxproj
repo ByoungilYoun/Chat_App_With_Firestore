@@ -19,6 +19,7 @@
 		0F1FADA225DC36A900203DEC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FADA125DC36A900203DEC /* Extensions.swift */; };
 		0F2BFA7225ECE1E800C2D5FF /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BFA7125ECE1E800C2D5FF /* ChatController.swift */; };
 		0F2BFA7525ECEF7800C2D5FF /* CustomInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BFA7425ECEF7800C2D5FF /* CustomInputAccessoryView.swift */; };
+		0F2BFA7825ED0D1A00C2D5FF /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2BFA7725ED0D1A00C2D5FF /* MessageCell.swift */; };
 		0F56280425E2AD880004883C /* InputContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56280325E2AD880004883C /* InputContainerView.swift */; };
 		0F56280825E2C9980004883C /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F56280725E2C9980004883C /* CustomTextField.swift */; };
 		0F922DBA25E6A98200368CB8 /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */; };
@@ -47,6 +48,7 @@
 		0F1FADA125DC36A900203DEC /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0F2BFA7125ECE1E800C2D5FF /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		0F2BFA7425ECEF7800C2D5FF /* CustomInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInputAccessoryView.swift; sourceTree = "<group>"; };
+		0F2BFA7725ED0D1A00C2D5FF /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		0F56280325E2AD880004883C /* InputContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputContainerView.swift; sourceTree = "<group>"; };
 		0F56280725E2C9980004883C /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		0F922DB925E6A98200368CB8 /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				0F56280725E2C9980004883C /* CustomTextField.swift */,
 				0FC9EA1325EBF0650062EA14 /* UserCell.swift */,
 				0F2BFA7425ECEF7800C2D5FF /* CustomInputAccessoryView.swift */,
+				0F2BFA7725ED0D1A00C2D5FF /* MessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				0F1FAD7B25DC1FF200203DEC /* SceneDelegate.swift in Sources */,
 				0F9CB1AD25EC0C36006ED7EA /* User.swift in Sources */,
 				0F9CB1B025EC0C6E006ED7EA /* Service.swift in Sources */,
+				0F2BFA7825ED0D1A00C2D5FF /* MessageCell.swift in Sources */,
 				0F1FAD9F25DC302E00203DEC /* RegistrationController.swift in Sources */,
 				0F1FAD9B25DC302200203DEC /* LoginController.swift in Sources */,
 				0F1FADA225DC36A900203DEC /* Extensions.swift in Sources */,
