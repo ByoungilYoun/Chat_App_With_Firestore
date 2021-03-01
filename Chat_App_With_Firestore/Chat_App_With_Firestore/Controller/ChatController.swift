@@ -38,7 +38,7 @@ class ChatController : UICollectionViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     configureUI()
-    print("Debug : User in chat controller is \(user.username)")
+    fetchMessages()
   }
   
   // customInputView 를 할때 해준다.
@@ -52,6 +52,16 @@ class ChatController : UICollectionViewController {
   override var canBecomeFirstResponder: Bool {
     return true
   }
+  
+  //MARK: - API
+  // database 에서 메세지 가져오는 함수 
+  func fetchMessages() {
+    Service.fetchMessages(forUser: user) { messages in
+      self.messages = messages
+      self.collectionView.reloadData()
+    }
+  }
+  
   
   //MARK: - Helpers
   func configureUI() {
@@ -72,6 +82,7 @@ extension ChatController {
   override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MessageCell
     cell.message = messages[indexPath.row]
+    cell.message?.user = user
     return cell
   }
 }
@@ -90,7 +101,6 @@ extension ChatController : UICollectionViewDelegateFlowLayout {
   //MARK: - CustomInputAccessoryViewDelegate
 extension ChatController : CustomInputAccessoryViewDelegate {
   func inputView(_ inputView: CustomInputAccessoryView, wantsToSend message: String) {
-    inputView.messageInputTextView.text = nil 
     
     // 메세지를 업로드 하고
     Service.uploadMessage(message, to: user) { error in
@@ -100,7 +110,7 @@ extension ChatController : CustomInputAccessoryViewDelegate {
       }
       
       // 텍스트창을 비운다.
-      inputView.messageInputTextView.text = nil
+      inputView.clearMessageText()
     }
   }
 }
